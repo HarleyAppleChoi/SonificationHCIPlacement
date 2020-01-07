@@ -7,6 +7,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox
+from spyder.widgets import comboboxes
 
 class Window(Frame):
 
@@ -51,7 +52,9 @@ class Window(Frame):
         labelVar = tk.StringVar
         l1 = Label(self)
         
-        comboboxArray = []
+        #array of current selection var 
+        global comboboxes 
+        comboboxes= []
         
         sound3 = tk.Label(self,text = 'Sound 3')
         sound3.grid(column=0, row=3)
@@ -62,6 +65,7 @@ class Window(Frame):
         music1["value"]=soundList
         music1.grid(column=1,row=3)
         music1.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(music1)
         
         sound4 = tk.Label(self,text = 'Sound 4')
         sound4.grid(column=0, row=4)
@@ -72,6 +76,8 @@ class Window(Frame):
         music2["value"]=soundList
         music2.grid(column=1,row=4)
         music2.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(music2)
+
         
         soundControllerL = tk.Label(self,text = 'Controller')
         soundControllerL.grid(column=0, row=5)
@@ -82,6 +88,7 @@ class Window(Frame):
         musicController["value"]=soundList
         musicController.grid(column=1,row=5)
         musicController.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(musicController)
         
         soundVariable1 = tk.Label(self,text = 'Variable1')
         soundVariable1.grid(column=0, row=6)
@@ -92,6 +99,7 @@ class Window(Frame):
         musicVariable1["value"]=soundList
         musicVariable1.grid(column=1,row=6)
         musicVariable1.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(musicVariable1)
         
         soundVariable2 = tk.Label(self,text = 'Variable2')
         soundVariable2.grid(column=0, row=7)
@@ -102,6 +110,8 @@ class Window(Frame):
         musicVariable2["value"]=soundList
         musicVariable2.grid(column=1,row=7)
         musicVariable2.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(musicVariable2)
+
         
         soundVariable3 = tk.Label(self,text = 'Variable3')
         soundVariable3.grid(column=0, row=8)
@@ -112,13 +122,14 @@ class Window(Frame):
         musicVariable3["value"]=soundList
         musicVariable3.grid(column=1,row=8)
         musicVariable3.bind("<<ComboboxSelected>>", self.chooseMusic)
-       
+        comboboxes.append(musicVariable3)
+
 
         numberChosen.current(settingKey.index(lastUsed))
-        music1.current(settingList[lastUsed][0])
-        music2.current(settingList[lastUsed][1])
-        
-        
+        i=0
+        for combobox in comboboxes:
+            combobox.current(settingList[lastUsed][i])
+            i+=1
 
         # button that save the setting 
         global saveButton
@@ -145,7 +156,11 @@ class Window(Frame):
             else:
                 b=int(soundList.index(music1S.get()))
                 c=int(soundList.index(music2S.get()))
-                settingList[a] = (b,c)
+                d=int(soundList.index(musicControllerS.get()))
+                e=int(soundList.index(musicVariable1S.get()))
+                f=int(soundList.index(musicVariable2S.get()))
+                g=int(soundList.index(musicVariable3S.get()))
+                settingList[a] = (b,c,d,e,f,g)
                 numberChosen['values'] = list(settingList.keys())    
                 numberChosen.current(list(settingList.keys()).index(a))
                 #write it to file
@@ -164,7 +179,8 @@ class Window(Frame):
     #new should can be save in memory
     def chooseMusic(self,self2):
         numberChosen.current(list(settingList.keys()).index("new"))
-        settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())))
+        settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicControllerS.get()))
+                              ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get())))
     
     #save the whole system and exit
     def save(self):
@@ -201,8 +217,11 @@ class Window(Frame):
     def loadButton(event,event2):
         a = number.get()
         print((settingList[a]))
-        music1.current(settingList[a][0])
-        music2.current(settingList[a][1])
+        i=0
+        for combobox in comboboxes:
+            combobox.current(settingList[a][i])
+            i+=1
+        
         if a == "new":
              e1.config(state='normal')
              saveButton.config(state='normal')
