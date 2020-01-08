@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox
 from spyder.widgets import comboboxes
+import functionSoundSelect as fss
 
 class Window(Frame):
 
@@ -177,10 +178,13 @@ class Window(Frame):
 
     #when selected, the combobox should show as new/(empty) and play music
     #new should can be save in memory
-    def chooseMusic(self,self2):
+    def chooseMusic(self,event):
         numberChosen.current(list(settingList.keys()).index("new"))
         settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicControllerS.get()))
                               ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get())))
+        selected = event.widget.get()
+        print selected
+        fss.send2pdCh1(selected)
     
     #save the whole system and exit
     def save(self):
