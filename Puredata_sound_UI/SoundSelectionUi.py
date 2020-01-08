@@ -235,6 +235,7 @@ class Window(Frame):
         
         
     def initFile(self):
+        fss.pdopen();
         infile = open("save","r")
         #first line of file is choices of sound track  
         global soundList
