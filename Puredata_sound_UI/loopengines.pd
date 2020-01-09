@@ -1,7 +1,7 @@
-#N canvas 643 95 875 603 10;
+#N canvas 101 386 1292 603 10;
 #X obj 159 92 s audio_on_off;
 #X obj 166 350 r audio_on_off;
-#X obj 166 371 tgl 15 0 empty empty empty 17 7 0 10 -4032 -1 -1 1 1
+#X obj 166 371 tgl 15 0 empty empty empty 17 7 0 10 -4032 -1 -1 0 1
 ;
 #X msg 166 388 \; pd dsp \$1 \;;
 #N canvas 0 50 450 300 (subpatch) 0;
@@ -9,9 +9,9 @@
 #X coords 0 1 882000 -1 80 50 1 0 0;
 #X restore -169 118 graph;
 #X obj -235 96 soundfiler;
-#X floatatom -235 115 8 0 0 0 - - -, f 8;
+#X floatatom -235 115 8 0 0 0 - - -;
 #X obj -235 133 / 44.1;
-#X floatatom -235 152 8 0 0 0 - - -, f 8;
+#X floatatom -235 152 8 0 0 0 - - -;
 #X obj 160 179 line~;
 #X obj 160 138 / 100;
 #X obj 160 159 pack 0 5;
@@ -20,18 +20,18 @@
 #X coords 0 1 480000 -1 80 50 1 0 0;
 #X restore -168 255 graph;
 #X obj -234 233 soundfiler;
-#X floatatom -234 252 8 0 0 0 - - -, f 8;
+#X floatatom -234 252 8 0 0 0 - - -;
 #X obj -234 270 / 44.1;
-#X floatatom -234 289 8 0 0 0 - - -, f 8;
+#X floatatom -234 289 8 0 0 0 - - -;
 #X obj 356 32 print incorrect route selected from 3003;
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array sample5 959488 float 2;
 #X coords 0 1 959488 -1 80 50 1 0 0;
 #X restore -167 393 graph;
 #X obj -233 371 soundfiler;
-#X floatatom -233 390 8 0 0 0 - - -, f 8;
+#X floatatom -233 390 8 0 0 0 - - -;
 #X obj -233 408 / 44.1;
-#X floatatom -233 427 8 0 0 0 - - -, f 8;
+#X floatatom -233 427 8 0 0 0 - - -;
 #X obj 159 44 route 0 1 2 3 4 5 6;
 #X obj 167 68 s play3;
 #X obj 214 68 s play4;
@@ -61,7 +61,7 @@
 #X obj -20 406 line~;
 #X obj -20 365 / 100;
 #X obj -20 386 pack 0 5;
-#X floatatom -20 343 5 0 0 0 - - -, f 5;
+#X floatatom -20 343 5 0 0 0 - - -;
 #X obj 42 285 *~;
 #X obj 42 248 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -73,7 +73,7 @@
 #X obj -19 268 line~;
 #X obj -19 227 / 100;
 #X obj -19 248 pack 0 5;
-#X floatatom -19 205 5 0 0 0 - - -, f 5;
+#X floatatom -19 205 5 0 0 0 - - -;
 #X obj 42 207 r play4;
 #X obj 42 265 tabplay~ sample4;
 #X obj 42 305 s~ S6out;
@@ -88,7 +88,7 @@
 #X obj -11 120 line~;
 #X obj -11 79 / 100;
 #X obj -11 100 pack 0 5;
-#X floatatom -11 57 5 0 0 0 - - -, f 5;
+#X floatatom -11 57 5 0 0 0 - - -;
 #X obj 50 59 r play3;
 #X obj 50 117 tabplay~ sample3;
 #X obj 50 157 s~ S5out;
@@ -102,9 +102,9 @@
 #X obj 21 40 r volnorm;
 #X obj 16 188 r volmid;
 #X obj 16 326 r volhigh;
-#X msg -235 58 open samples/drone1.wav;
-#X msg -234 195 open samples/engine-normal.wav;
-#X msg -233 332 open samples/sine-mid.aif;
+#X msg -235 58 open \$1;
+#X msg -234 195 open \$1;
+#X msg -233 332 open \$1;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 5 0 6 0;

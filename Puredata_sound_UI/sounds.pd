@@ -1,7 +1,7 @@
-#N canvas 598 150 704 477 10;
+#N canvas -15 281 704 477 10;
 #X obj 128 144 s audio_on_off;
 #X obj -234 337 r audio_on_off;
-#X obj -234 358 tgl 15 0 empty empty empty 17 7 0 10 -4032 -1 -1 1
+#X obj -234 358 tgl 15 0 empty empty empty 17 7 0 10 -4032 -1 -1 0
 1;
 #X msg -234 375 \; pd dsp \$1 \;;
 #X obj -59 129 *~;
@@ -11,9 +11,9 @@
 #X coords 0 1 882000 -1 80 50 1;
 #X restore -158 116 graph;
 #X obj -235 96 soundfiler;
-#X floatatom -235 115 8 0 0 0 - - -, f 8;
+#X floatatom -235 115 8 0 0 0 - - -;
 #X obj -235 133 / 44.1;
-#X floatatom -235 152 8 0 0 0 - - -, f 8;
+#X floatatom -235 152 8 0 0 0 - - -;
 #X obj 65 136 line~;
 #X obj 65 95 / 100;
 #X obj 65 116 pack 0 5;
@@ -34,9 +34,9 @@
 #X coords 0 1 718848 -1 80 50 1;
 #X restore -156 277 graph;
 #X obj -235 257 soundfiler;
-#X floatatom -235 276 8 0 0 0 - - -, f 8;
+#X floatatom -235 276 8 0 0 0 - - -;
 #X obj -235 294 / 44.1;
-#X floatatom -235 313 8 0 0 0 - - -, f 8;
+#X floatatom -235 313 8 0 0 0 - - -;
 #X obj 65 297 line~;
 #X obj 65 256 / 100;
 #X obj 65 277 pack 0 5;
@@ -65,8 +65,8 @@
 #X obj 137 127 s play6;
 #X obj -235 39 r play6;
 #X obj -235 200 r play7;
-#X msg -235 219 open samples/alarmTwo.aif;
-#X msg -235 58 open samples/auto_mode.wav;
+#X msg -235 58 open \$1;
+#X msg -235 219 open \$1;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;
 #X connect 4 0 22 0;
@@ -113,7 +113,7 @@
 #X connect 50 0 27 0;
 #X connect 53 0 5 0;
 #X connect 54 0 25 0;
-#X connect 57 0 60 0;
-#X connect 58 0 59 0;
-#X connect 59 0 50 0;
-#X connect 60 0 48 0;
+#X connect 57 0 59 0;
+#X connect 58 0 60 0;
+#X connect 59 0 48 0;
+#X connect 60 0 50 0;
