@@ -26,13 +26,20 @@ def changeVol6(_=None):
     pdf.highEngineVol(vol6.get())
     
 def initFile():
+        global soundList
+        global settingList
+        global lastUsed
+        # List all files in a directory using scandir()
+        path = 'samples/'
+        soundList=os.listdir(path)
+        for entry in soundList:
+                print(entry)
+        
         infile = open("save","r")
         #first line of file is choices of sound track  
+        
         settingList = {}
         #read sound for selection
-        soundList = filter(lambda a: a!="" and a!=" "and a!="\n",infile.readline().split("\""))
-        for word in soundList:
-            print(word)
         #read LastUsed sound
         lastUsed = infile.readline().rstrip()
         print(lastUsed)

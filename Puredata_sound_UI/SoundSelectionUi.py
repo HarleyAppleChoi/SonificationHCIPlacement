@@ -9,6 +9,7 @@ from tkinter import ttk
 import tkinter.messagebox
 from spyder.widgets import comboboxes
 import pdfunctions as pdf
+import os
 
 class Window(Frame):
 
@@ -82,7 +83,7 @@ class Window(Frame):
         i=0
         for combobox in comboboxes:
             currentStringInCombobox = settingList[lastUsed][i]
-            print currentStringInCombobox
+            print (currentStringInCombobox)
             combobox.current(soundList.index(currentStringInCombobox))
             i+=1
 
@@ -142,7 +143,7 @@ class Window(Frame):
         for str in comboboxString:
             settingList["new"].append(str.get())
         selected = event.widget.get()
-        print selected
+        print(selected)
     
     #save the whole system and exit
     def save(self):
@@ -151,9 +152,6 @@ class Window(Frame):
         #first line is a list of music can choose
         lastUsed = number.get()
         writeString = ''
-        for item in soundList:
-            writeString += "\"" + item + "\""
-        writeString += "\n"
         try:
             settingList.pop("")
         except KeyError:
@@ -199,16 +197,20 @@ class Window(Frame):
         
         
     def initFile(self):
-        infile = open("save","r")
-        #first line of file is choices of sound track  
         global soundList
         global settingList
         global lastUsed
+        # List all files in a directory using scandir()
+        path = 'samples/'
+        soundList=os.listdir(path)
+        for entry in soundList:
+                print(entry)
+        
+        infile = open("save","r")
+        #first line of file is choices of sound track  
+        
         settingList = {}
         #read sound for selection
-        soundList = filter(lambda a: a!="" and a!=" "and a!="\n",infile.readline().split("\""))
-        for word in soundList:
-            print(word)
         #read LastUsed sound
         lastUsed = infile.readline().rstrip()
         print(lastUsed)
