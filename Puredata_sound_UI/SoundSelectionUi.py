@@ -92,27 +92,27 @@ class Window(Frame):
         applyButton.config(command=self.save)
         applyButton.grid(column=3,row=1)
         
-         
+        #only save the new setting into file
     def saveButton(self):
         #checkname
         a = entryVar.get()
+        settingList[a]=[]
         if number.get() == 'new':
             if a == '':
                 tkinter.messagebox.showinfo("Title", "please Input Title")
             if a in soundList:
                 tkinter.messagebox.showinfo("Title", "Title name already exist, please get a new one")
             else:
-                b=int(soundList.index(music1S.get()))
-                c=int(soundList.index(music2S.get()))
-                d=int(soundList.index(musicConfirmS.get()))
-                e=int(soundList.index(musicVariable1S.get()))
-                f=int(soundList.index(musicVariable2S.get()))
-                g=int(soundList.index(musicVariable3S.get()))
-                settingList[a] = (b,c,d,e,f,g)
+                for string in comboboxString:
+                    settingList[a].append(string.get())
+                
                 numberChosen['values'] = list(settingList.keys())    
-                numberChosen.current(list(settingList.keys()).index(a))
+                numberChosen.current(settingList.keys().index(a))
                 #write it to file
-                writeStr = "\n"+a+" "+str(b)+" "+str(c) 
+                writeStr = "\""+a+"\"";
+                for entry in settingList[a]:
+                    writeStr += "\""+entry+"\""
+                writeStr+="\n"
                 print(writeStr)
                 #print(settingList.items())
                 outFile = open("save","a")
@@ -127,8 +127,9 @@ class Window(Frame):
     #new should can be save in memory
     def chooseMusic(self,event):
         numberChosen.current(list(settingList.keys()).index("new"))
-        settingList["new"] = [int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicConfirmS.get()))
-                              ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get()))]
+        settingList["new"]=[]
+        for str in comboboxString:
+            settingList["new"].append(str.get())
         selected = event.widget.get()
         print selected
     
@@ -169,7 +170,7 @@ class Window(Frame):
         print((settingList[a]))
         i=0
         for combobox in comboboxes:
-            combobox.current(settingList[a][i])
+            combobox.current(soundList.index(settingList[a][i]))
             i+=1
         
         if a == "new":
