@@ -8,7 +8,7 @@ import tkinter as tk
 from tkinter import ttk
 import tkinter.messagebox
 from spyder.widgets import comboboxes
-import functionSoundSelect as fss
+import pdfunctions as pdf
 
 class Window(Frame):
 
@@ -184,7 +184,6 @@ class Window(Frame):
                               ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get())))
         selected = event.widget.get()
         print selected
-        fss.send2pdCh1(selected)
     
     #save the whole system and exit
     def save(self):
@@ -235,7 +234,6 @@ class Window(Frame):
         
         
     def initFile(self):
-        fss.pdopen();
         infile = open("save","r")
         #first line of file is choices of sound track  
         global soundList
