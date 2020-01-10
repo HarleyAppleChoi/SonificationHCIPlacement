@@ -63,80 +63,16 @@ class Window(Frame):
         for i in range(len(comboboxesTitle)):
             text = tk.Label(self,text = comboboxesTitle[i])
             text.grid(column=0, row=3+i)
-            comboboxString[i] = tk.StringVar()
-            comboboxes[i] = ttk.Combobox(self,width=12,textvariable=music1S)
+            string = tk.StringVar()
+            comboboxString.append(string)
+            comboboxNow = ttk.Combobox(self,width=12,textvariable=comboboxString[i])
+            comboboxes.append(comboboxNow)
             comboboxes[i]["value"]=soundList
-            comboboxes[i].grid(column=1,row=3)
+            comboboxes[i].grid(column=1,row=3+i)
             comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
         
         
-        sound3 = tk.Label(self,text = 'Sound 3')
-        sound3.grid(column=0, row=3)
-        global music1S
-        music1S = tk.StringVar()
-        global music1
-        music1 = ttk.Combobox(self,width=12,textvariable=music1S)
-        music1["value"]=soundList
-        music1.grid(column=1,row=3)
-        music1.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(music1)
         
-        sound4 = tk.Label(self,text = 'Sound 4')
-        sound4.grid(column=0, row=4)
-        global music2S
-        music2S = tk.StringVar()
-        global music2
-        music2 = ttk.Combobox(self,width=12,textvariable=music2S)
-        music2["value"]=soundList
-        music2.grid(column=1,row=4)
-        music2.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(music2)
-
-        
-        soundControllerL = tk.Label(self,text = 'Confirm')
-        soundControllerL.grid(column=0, row=5)
-        global musicConfirmS
-        musicConfirmS = tk.StringVar()
-        global musicConfirm
-        musicConfirm = ttk.Combobox(self,width=12,textvariable=musicConfirmS)
-        musicConfirm["value"]=soundList
-        musicConfirm.grid(column=1,row=5)
-        musicConfirm.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(musicConfirm)
-        
-        soundVariable1 = tk.Label(self,text = 'Variable1')
-        soundVariable1.grid(column=0, row=6)
-        global musicVariable1S
-        musicVariable1S = tk.StringVar()
-        global musicVariable1
-        musicVariable1 = ttk.Combobox(self,width=12,textvariable=musicVariable1S)
-        musicVariable1["value"]=soundList
-        musicVariable1.grid(column=1,row=6)
-        musicVariable1.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(musicVariable1)
-        
-        soundVariable2 = tk.Label(self,text = 'Variable2')
-        soundVariable2.grid(column=0, row=7)
-        global musicVariable2S
-        musicVariable2S = tk.StringVar()
-        global musicVariable2
-        musicVariable2 = ttk.Combobox(self,width=12,textvariable=musicVariable2S)
-        musicVariable2["value"]=soundList
-        musicVariable2.grid(column=1,row=7)
-        musicVariable2.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(musicVariable2)
-
-        
-        soundVariable3 = tk.Label(self,text = 'Variable3')
-        soundVariable3.grid(column=0, row=8)
-        global musicVariable3S
-        musicVariable3S = tk.StringVar()
-        global musicVariable3
-        musicVariable3 = ttk.Combobox(self,width=12,textvariable=musicVariable3S)
-        musicVariable3["value"]=soundList
-        musicVariable3.grid(column=1,row=8)
-        musicVariable3.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(musicVariable3)
 
 
         numberChosen.current(settingKey.index(lastUsed))
