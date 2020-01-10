@@ -1,5 +1,4 @@
-alarmOne.aif drone3.wav hit.wav alarmThree.aif engine-high.wav kick_drum.wav alarmTwo.aif engine-mid.wav piano.wav auto_mode.wav engine-normal.wav sine-low.aif drone1.wav freq_vibe.wav sine-mid.aif drone2.wav guitar.wav sine-midhigh.aif 
+"alarmOne.aif" "drone3.wav" "hit.wav" "alarmThree.aif" "engine-high.wav" "kick_drum.wav" "alarmTwo.aif" "engine-mid.wav" "piano.wav" "auto_mode.wav" "engine-normal.wav" "sine-low.aif" "drone1.wav" "freq_vibe.wav" "sine-mid.aif" "drone2.wav" "guitar.wav" "sine-midhigh.aif"
 newstuff
-newstuff 2 5 2 5 1 6 
-new 0 0 0 0 0 0 
-testttest 4 0 2 2 2 2 
+"newstuff" "alarmOne.aif" "drone3.wav" "hit.wav" "alarmThree.aif"
+"new" "0" "0""0" "0""0" "0" 

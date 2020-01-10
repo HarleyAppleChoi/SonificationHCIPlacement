@@ -71,14 +71,12 @@ class Window(Frame):
             comboboxes[i].grid(column=1,row=3+i)
             comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
         
-        
-        
-
-
         numberChosen.current(settingKey.index(lastUsed))
         i=0
         for combobox in comboboxes:
-            combobox.current(settingList[lastUsed][i])
+            currentStringInCombobox = settingList[lastUsed][i]
+            print currentStringInCombobox
+            combobox.current(soundList.index(currentStringInCombobox))
             i+=1
 
         # button that save the setting 
@@ -129,15 +127,15 @@ class Window(Frame):
     #new should can be save in memory
     def chooseMusic(self,event):
         numberChosen.current(list(settingList.keys()).index("new"))
-        settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicConfirmS.get()))
-                              ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get())))
+        settingList["new"] = [int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicConfirmS.get()))
+                              ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get()))]
         selected = event.widget.get()
         print selected
     
     #save the whole system and exit
     def save(self):
         self.saveButton()
-        settingList["new"] = (0,0,0,0,0,0)
+        settingList["new"] = [0,0,0,0,0,0]
         #first line is a list of music can choose
         lastUsed = number.get()
         writeString = ''
@@ -190,7 +188,7 @@ class Window(Frame):
         global lastUsed
         settingList = {}
         #read sound for selection
-        soundList = infile.readline().split()
+        soundList = filter(lambda a: a!="" and a!=" ",infile.readline().split("\""))
         for word in soundList:
             print(word)
         #read LastUsed sound
@@ -199,8 +197,11 @@ class Window(Frame):
         #read setting that is saved
         for line in infile:
             line=line.rstrip()
-            word = line.split()
-            settingList[word[0]] = (int(word[1]),int(word[2]),int(word[3]),int(word[4]),int(word[5]),int(word[6]))
+            word = filter(lambda a: a!="" and a!=" ",line.split("\""))
+            key = word[0];
+            settingList[key]=[];
+            for x in range(1,len(word)):
+                settingList[key].append(word[x])
             
             
         print(settingList)
