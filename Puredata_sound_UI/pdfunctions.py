@@ -4,7 +4,9 @@ import subprocess as sp
 
 soundDir = "../Toutilo_Docs/samples/"
 prefiexSoundDir = "symbol "+soundDir
-arrayOfSoundTrack = ["alarmOne.aif","drone3.wav" ,"hit.wav", "alarmThree.aif" ,"engine-high.wav" ,"kick_drum.wav"]
+##default
+arrayOfSoundTrack = ["alarmOne.aif","drone3.wav" ,"hit.wav", "alarmThree.aif" ]
+
 
 def definition(a):
     arrayOfSoundTrack = a;
@@ -164,3 +166,8 @@ def highEngineVol(vol):
     message = '2 ' + str(vol) + ';'
     send2pdCh5(message)
     
+    
+def preview(filename):
+    out = "echo 'symbol "+soundDir + filename + ";' | pdsend "+str(3000)
+    print (out)
+    output=sp.check_output(out, shell=True)    
