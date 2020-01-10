@@ -217,7 +217,7 @@ class Window(Frame):
         #read setting that is saved
         for line in infile:
             line=line.rstrip()
-            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
+            word = list(filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\"")))
             key = word[0];
             settingList[key]=[];
             for x in range(1,len(word)):
