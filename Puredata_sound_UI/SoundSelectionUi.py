@@ -59,6 +59,8 @@ class Window(Frame):
         comboboxString = []
         global comboboxes 
         comboboxes = []
+        global previewButtons
+        previewButtons = []
         
         for i in range(len(comboboxesTitle)):
             text = tk.Label(self,text = comboboxesTitle[i])
@@ -70,6 +72,11 @@ class Window(Frame):
             comboboxes[i]["value"]=soundList
             comboboxes[i].grid(column=1,row=3+i)
             comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
+            previewButton = Button(self, text="Preview")
+            previewButton.config(command=lambda:self.previewAction(string))
+            previewButton.grid(column=2,row=3+i)
+            previewButtons.append(previewButton)
+            
         
         numberChosen.current(settingKey.index(lastUsed))
         i=0
@@ -123,6 +130,10 @@ class Window(Frame):
         else:
             pass
 
+
+    def previewAction(self,string):
+        pdf.preview(string.get())
+        
     #when selected, the combobox should show as new/(empty) and play music
     #new should can be save in memory
     def chooseMusic(self,event):
@@ -136,22 +147,25 @@ class Window(Frame):
     #save the whole system and exit
     def save(self):
         self.saveButton()
-        settingList["new"] = [0,0,0,0,0,0]
+        settingList["new"] = ["alarmOne.aif","drone3.wav" ,"hit.wav", "alarmThree.aif" ]
         #first line is a list of music can choose
         lastUsed = number.get()
         writeString = ''
-        for item in range(len(soundList)):
-            writeString = writeString + soundList[item] + " "
+        for item in soundList:
+            writeString += "\"" + item + "\""
         writeString += "\n"
-          
+        try:
+            settingList.pop("")
+        except KeyError:
+            pass
         #second line is the last choice
         writeString += lastUsed 
         #print writeString
         #others are the mode arraylist
         for items in settingList:
-            writeString +=  "\n"+ items + " "
-            for y in range(len(settingList[items])):
-                writeString += str(settingList[items][y]) + " "
+            writeString +=  "\n\""+ items + "\""
+            for y in settingList[items]:
+                writeString += "\""+str(y) + "\""
             
         print(writeString)
         
@@ -189,7 +203,7 @@ class Window(Frame):
         global lastUsed
         settingList = {}
         #read sound for selection
-        soundList = filter(lambda a: a!="" and a!=" ",infile.readline().split("\""))
+        soundList = filter(lambda a: a!="" and a!=" "and a!="\n",infile.readline().split("\""))
         for word in soundList:
             print(word)
         #read LastUsed sound
@@ -198,16 +212,15 @@ class Window(Frame):
         #read setting that is saved
         for line in infile:
             line=line.rstrip()
-            word = filter(lambda a: a!="" and a!=" ",line.split("\""))
+            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
             key = word[0];
             settingList[key]=[];
             for x in range(1,len(word)):
                 settingList[key].append(word[x])
             
-            
-        print(settingList)
+        print(settingList)    
         infile.close()
-        
+        pdf.definition(settingList[lastUsed]);
         #set the current to last used
         
             
