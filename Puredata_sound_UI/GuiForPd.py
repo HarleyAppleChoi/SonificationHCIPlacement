@@ -24,38 +24,6 @@ def changeVol5(_=None):
     
 def changeVol6(_=None):
     pdf.highEngineVol(vol6.get())
-    
-def initFile():
-        global soundList
-        global settingList
-        global lastUsed
-        # List all files in a directory using scandir()
-        path = 'samples/'
-        soundList=os.listdir(path)
-        for entry in soundList:
-                print(entry)
-        
-        infile = open("save","r")
-        #first line of file is choices of sound track  
-        
-        settingList = {}
-        #read sound for selection
-        #read LastUsed sound
-        lastUsed = infile.readline().rstrip()
-        print(lastUsed)
-        #read setting that is saved
-        for line in infile:
-            line=line.rstrip()
-            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
-            key = word[0];
-            settingList[key]=[];
-            for x in range(1,len(word)):
-                settingList[key].append(word[x])
-            
-        print(settingList)    
-        infile.close()
-        pdf.definition(settingList[lastUsed]);
-        #set the current to last used
         
 
 def speakerSet1(_=None):
@@ -198,6 +166,5 @@ for speaker, status in speakers:
 
 
 
-
-initFile()
+pdf.readFile()
 root.mainloop()

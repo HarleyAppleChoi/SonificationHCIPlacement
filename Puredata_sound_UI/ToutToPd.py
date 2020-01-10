@@ -190,7 +190,7 @@ class criticalEngineThread(Thread):
                 
 
 ## Main Program
-
+pdf.readFile()
 arduinoThread()
 batteryThread()
 engineThread()

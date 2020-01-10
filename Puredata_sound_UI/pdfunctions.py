@@ -1,4 +1,6 @@
 import subprocess as sp
+import os
+import copy
 
 ## Initialiser
 
@@ -6,8 +8,37 @@ soundDir = "samples/"
 prefiexSoundDir = "symbol "+soundDir
 ##default
 
-
-
+#this must be called
+def readFile():
+        # List all files in a directory using scandir()
+        path = 'samples/'
+        soundList=(os.listdir(path))
+        for entry in soundList:
+                print(entry)
+        
+        infile = open("save","r")
+        #first line of file is choices of sound track  
+        
+        settingList = {}
+        #read sound for selection
+        #read LastUsed sound
+        lastUsedList=[]
+        lastUsedList.append(infile.readline().rstrip())
+        #read setting that is saved
+        for line in infile:
+            line=line.rstrip()
+            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
+            key = word[0];
+            settingList[key]=[];
+            for x in range(1,len(word)):
+                settingList[key].append(word[x])
+            
+        print(settingList)    
+        infile.close()
+        definition(settingList[lastUsedList[0]]);
+        print(lastUsedList)
+        #set the current to last used 
+        return soundList,settingList,lastUsedList
 
 def definition(a):
     global arrayOfSoundTrack
