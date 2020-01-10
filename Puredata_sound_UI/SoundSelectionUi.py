@@ -54,8 +54,21 @@ class Window(Frame):
         l1 = Label(self)
         
         #array of current selection var 
+        comboboxesTitle = ["Sound 3","Sound 4","Error","Confirm"]
+        global comboboxString
+        comboboxString = []
         global comboboxes 
-        comboboxes= []
+        comboboxes = []
+        
+        for i in range(len(comboboxesTitle)):
+            text = tk.Label(self,text = comboboxesTitle[i])
+            text.grid(column=0, row=3+i)
+            comboboxString[i] = tk.StringVar()
+            comboboxes[i] = ttk.Combobox(self,width=12,textvariable=music1S)
+            comboboxes[i]["value"]=soundList
+            comboboxes[i].grid(column=1,row=3)
+            comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
+        
         
         sound3 = tk.Label(self,text = 'Sound 3')
         sound3.grid(column=0, row=3)
@@ -80,16 +93,16 @@ class Window(Frame):
         comboboxes.append(music2)
 
         
-        soundControllerL = tk.Label(self,text = 'Controller')
+        soundControllerL = tk.Label(self,text = 'Confirm')
         soundControllerL.grid(column=0, row=5)
-        global musicControllerS
-        musicControllerS = tk.StringVar()
-        global musicController
-        musicController = ttk.Combobox(self,width=12,textvariable=musicControllerS)
-        musicController["value"]=soundList
-        musicController.grid(column=1,row=5)
-        musicController.bind("<<ComboboxSelected>>", self.chooseMusic)
-        comboboxes.append(musicController)
+        global musicConfirmS
+        musicConfirmS = tk.StringVar()
+        global musicConfirm
+        musicConfirm = ttk.Combobox(self,width=12,textvariable=musicConfirmS)
+        musicConfirm["value"]=soundList
+        musicConfirm.grid(column=1,row=5)
+        musicConfirm.bind("<<ComboboxSelected>>", self.chooseMusic)
+        comboboxes.append(musicConfirm)
         
         soundVariable1 = tk.Label(self,text = 'Variable1')
         soundVariable1.grid(column=0, row=6)
@@ -157,7 +170,7 @@ class Window(Frame):
             else:
                 b=int(soundList.index(music1S.get()))
                 c=int(soundList.index(music2S.get()))
-                d=int(soundList.index(musicControllerS.get()))
+                d=int(soundList.index(musicConfirmS.get()))
                 e=int(soundList.index(musicVariable1S.get()))
                 f=int(soundList.index(musicVariable2S.get()))
                 g=int(soundList.index(musicVariable3S.get()))
@@ -180,7 +193,7 @@ class Window(Frame):
     #new should can be save in memory
     def chooseMusic(self,event):
         numberChosen.current(list(settingList.keys()).index("new"))
-        settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicControllerS.get()))
+        settingList["new"] = (int(soundList.index(music1S.get())),int(soundList.index(music2S.get())),int(soundList.index(musicConfirmS.get()))
                               ,int(soundList.index(musicVariable1S.get())),int(soundList.index(musicVariable2S.get())),int(soundList.index(musicVariable3S.get())))
         selected = event.widget.get()
         print selected
