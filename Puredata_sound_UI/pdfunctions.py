@@ -2,14 +2,16 @@ import subprocess as sp
 
 ## Initialiser
 
-soundDir = "../Toutilo_Docs/samples/"
+soundDir = "samples/"
 prefiexSoundDir = "symbol "+soundDir
 ##default
-arrayOfSoundTrack = ["alarmOne.aif","drone3.wav" ,"hit.wav", "alarmThree.aif" ]
+
+
 
 
 def definition(a):
-    arrayOfSoundTrack = a;
+    global arrayOfSoundTrack
+    arrayOfSoundTrack=a
 
 def pdopen():
     sp.Popen(["nohup", "pd", "controller.pd", "soundoutput.pd", "loopengines.pd", "&"])

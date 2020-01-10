@@ -173,7 +173,10 @@ class Window(Frame):
         outFile.write(writeString)
         outFile.close()
         
-        exit()
+        #load system gui
+        root.quit()
+        
+
         
     def labelforNew(self):
         numberChosen.current(list(settingList.keys()).index("new"))

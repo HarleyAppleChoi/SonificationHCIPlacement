@@ -24,6 +24,32 @@ def changeVol5(_=None):
     
 def changeVol6(_=None):
     pdf.highEngineVol(vol6.get())
+    
+def initFile():
+        infile = open("save","r")
+        #first line of file is choices of sound track  
+        settingList = {}
+        #read sound for selection
+        soundList = filter(lambda a: a!="" and a!=" "and a!="\n",infile.readline().split("\""))
+        for word in soundList:
+            print(word)
+        #read LastUsed sound
+        lastUsed = infile.readline().rstrip()
+        print(lastUsed)
+        #read setting that is saved
+        for line in infile:
+            line=line.rstrip()
+            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
+            key = word[0];
+            settingList[key]=[];
+            for x in range(1,len(word)):
+                settingList[key].append(word[x])
+            
+        print(settingList)    
+        infile.close()
+        pdf.definition(settingList[lastUsed]);
+        #set the current to last used
+        
 
 def speakerSet1(_=None):
     if engine1Speaker.get() == 1 :
@@ -163,4 +189,8 @@ for speaker, status in speakers:
                         variable=varEngSpeaker, value=status, command=speakerVarEng)
         b.grid(row=6+status, column=4, sticky=W)
 
+
+
+
+initFile()
 root.mainloop()
