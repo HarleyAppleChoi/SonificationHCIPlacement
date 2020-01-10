@@ -203,7 +203,7 @@ class Window(Frame):
         settingList = {}
         global lastUsed
         lastUsedList=[]
-        soundList,settingList,lastUsedList =pdf.readFile()
+        soundList,settingList,lastUsedList =pdf.getList()
         #set the current to last used
         lastUsed = lastUsedList[0]
             

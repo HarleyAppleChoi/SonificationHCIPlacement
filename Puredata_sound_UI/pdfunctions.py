@@ -11,6 +11,7 @@ prefiexSoundDir = "symbol "+soundDir
 #this must be called
 def readFile():
         # List all files in a directory using scandir()
+        global soundList,settingList,lastUsedList
         path = 'samples/'
         soundList=(os.listdir(path))
         for entry in soundList:
@@ -37,8 +38,10 @@ def readFile():
         infile.close()
         definition(settingList[lastUsedList[0]]);
         print(lastUsedList)
-        #set the current to last used 
-        return soundList,settingList,lastUsedList
+        #set the current to last used     
+def getList():
+    return soundList,settingList,lastUsedList
+
 
 def definition(a):
     global arrayOfSoundTrack
@@ -204,3 +207,5 @@ def preview(filename):
     out = "echo 'symbol "+soundDir + filename + ";' | pdsend "+str(3000)
     print (out)
     output=sp.check_output(out, shell=True)    
+
+readFile()

@@ -166,5 +166,4 @@ for speaker, status in speakers:
 
 
 
-pdf.readFile()
 root.mainloop()
