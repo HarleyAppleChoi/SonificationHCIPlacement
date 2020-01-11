@@ -73,8 +73,8 @@ class Window(Frame):
             comboboxes[i]["value"]=soundList
             comboboxes[i].grid(column=1,row=3+i)
             comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
-            previewButton = Button(self, text="Preview")
-            previewButton.config(command=lambda:self.previewAction(string))
+            previewButton = Button(self, text="Preview"+str(i))
+            previewButton.config(command=lambda s=i:self.previewAction(s))
             previewButton.grid(column=2,row=3+i)
             previewButtons.append(previewButton)
             
@@ -132,8 +132,8 @@ class Window(Frame):
             pass
 
 
-    def previewAction(self,string):
-        pdf.preview(string.get())
+    def previewAction(self,button):
+        pdf.preview(comboboxes[button].get())
         
     #when selected, the combobox should show as new/(empty) and play music
     #new should can be save in memory
@@ -170,7 +170,6 @@ class Window(Frame):
         outFile = open("save","w")
         outFile.write(writeString)
         outFile.close()
-        
         #load system gui
         root.quit()
         

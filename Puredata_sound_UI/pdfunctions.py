@@ -28,7 +28,7 @@ def readFile():
         #read setting that is saved
         for line in infile:
             line=line.rstrip()
-            word = filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\""))
+            word = list(filter(lambda a: a!="" and a!=" "and a!="\n",line.split("\"")))
             key = word[0];
             settingList[key]=[];
             for x in range(1,len(word)):
@@ -67,11 +67,6 @@ def py2open():
 ## In the above example 3000 send to Sounds 1, the 1st one goes to play, the second 1 plays the sound
 ## Check the PD patches for reference to what the 1st number maps to and channels 
 
-##to preview in sound selection
-def preview(filename):
-    out = "echo '"+prefiexSoundDir + filename + ";' | pdsend "+str(3000)
-    print (out)
-    output=sp.check_output(out, shell=True)
 
 ## Sounds 1 | Channel 3000
 
@@ -204,7 +199,7 @@ def highEngineVol(vol):
     
     
 def preview(filename):
-    out = "echo 'symbol "+soundDir + filename + ";' | pdsend "+str(3000)
+    out = "echo 'symbol "+soundDir + filename + ";' | pdsend "+str(3010)
     print (out)
     output=sp.check_output(out, shell=True)    
 
