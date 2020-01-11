@@ -50,12 +50,14 @@ def definition(a):
 def pdopen():
     sp.Popen(["nohup", "pd", "controller.pd", "soundoutput.pd", "loopengines.pd", "&"])
     
-
 def py1open():
     sp.Popen(["nohup", "python3", "GuiForPd.py", "&"])
 
 def py2open():
     sp.Popen(["nohup", "python3", "ControllerToPd.py", "&"])
+    
+def py2open():
+    sp.Popen(["nohup", "python3", "ControllerToPd.py", "&"])    
 
 ## Messages to PD sent in the form
 ## echo 'message;' | pdsend channelNum
