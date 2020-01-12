@@ -115,7 +115,7 @@ class Window(Frame):
                     settingList[a].append(string.get())
                 
                 numberChosen['values'] = list(settingList.keys())    
-                numberChosen.current(settingList.keys().index(a))
+                numberChosen.current(list(settingList.keys()).index(a))
                 #write it to file
                 writeStr = "\""+a+"\"";
                 for entry in settingList[a]:
