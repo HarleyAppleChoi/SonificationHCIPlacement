@@ -12,16 +12,18 @@ prefiexSoundDir = "symbol "+soundDir
 def readFile():
         # List all files in a directory using scandir()
         global soundList,settingList,lastUsedList
-        path = 'samples/'
-        soundList=(os.listdir(path))
+        path = os.path.dirname(os.path.abspath(__file__))
+        print(path)
+        soundFilePath=os.path.join(path,'samples/')
+        soundList=(os.listdir(soundFilePath))
         for entry in soundList:
-                print(entry)
-        
-        infile = open("save","r")
+        	print("soundList"+entry)
+        saveFilePath=(os.path.join(path,"save"))
+        infile = open(saveFilePath,"r")
         #first line of file is choices of sound track  
         
         settingList = {}
-        #read sound for selection
+        #read sound for selection  
         #read LastUsed sound
         lastUsedList=[]
         lastUsedList.append(infile.readline().rstrip())
@@ -40,6 +42,7 @@ def readFile():
         print(lastUsedList)
         #set the current to last used     
 def getList():
+    print(soundList)
     return soundList,settingList,lastUsedList
 
 

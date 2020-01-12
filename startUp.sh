@@ -7,5 +7,5 @@ echo $PATH
 echo $ROOT
 echo "Script location: $BASEDIR"
 echo $WORKDIR
-python3 ${WORKDIR}/SoundSelection.py 
+python3 ${WORKDIR}/SoundSelectionUI.py 
 #sudo -s python3 ToutToPd.py &
