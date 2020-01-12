@@ -77,7 +77,12 @@ class Window(Frame):
             previewButton.config(command=lambda s=i:self.previewAction(s))
             previewButton.grid(column=2,row=3+i)
             previewButtons.append(previewButton)
-            
+
+
+        global saveFilePath
+        path = os.path.dirname(os.path.abspath(__file__))
+        saveFilePath=os.path.join(path,'save')
+
         
         numberChosen.current(settingKey.index(lastUsed))
         i=0
@@ -123,7 +128,7 @@ class Window(Frame):
                 writeStr+="\n"
                 print(writeStr)
                 #print(settingList.items())
-                outFile = open("save","a")
+                outFile = open(saveFilePath,"a")
                 outFile.write(writeStr)
                 outFile.close()
                 tkinter.messagebox.showinfo("Title", "Setting is saved.")
@@ -166,8 +171,7 @@ class Window(Frame):
                 writeString += "\""+str(y) + "\""
             
         print(writeString)
-        
-        outFile = open("save","w")
+        outFile = open(saveFilePath,"w")
         outFile.write(writeString)
         outFile.close()
         #load system gui
