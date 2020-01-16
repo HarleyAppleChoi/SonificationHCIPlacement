@@ -8,6 +8,6 @@ echo $ROOT
 echo "Script location: $BASEDIR"
 echo $WORKDIR
 pd -nogui ${WORKDIR}/*.pd &
-python3 ${WORKDIR}/SoundSelectionUi.py 
+python3 ${WORKDIR}/SoundSelectionUi.py & 
 echo "load ToutToPd.py"
-python3 ${WORKDIR}/ToutToPd.py &
+#python3 ${WORKDIR}/ToutToPd.py &
