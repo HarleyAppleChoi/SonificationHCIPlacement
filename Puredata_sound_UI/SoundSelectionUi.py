@@ -207,6 +207,7 @@ class Window(Frame):
             
 root = tk.Tk()
 root.geometry("500x200")
+pdf.audio1(1)
 
 app = Window(root)
 root.mainloop()
