@@ -18,76 +18,40 @@ Python 3.6 is recommanded.
 Guide to install: https://gist.github.com/dschep/24aa61672a2092246eaca2824400d37f
 
 ### How to use SoundSelection?
-This sound
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+This sound selection ui allows you to change the sound from the enginne.
+To start, simply go to the file directory and input these command line:
 
 ```
-Give the example
+cd Puredata_sound_UI
+pd -nogui *.pd &
+python3 SoundSelectionUi.py
 ```
 
-And repeat
 
-```
-until finished
-```
 
-End with an example of getting some data out of the system or using it for a little demo
+## Open Existing Setting
+When each time open, last used file is loaded in the selector.
+Select the saved setting in “Sound Setting” and click “Apply & Close”
 
-## Running the tests
 
-Explain how to run the automated tests for this system
 
-### Break down into end to end tests
+## Add new setting
 
-Explain what these tests test and why
+Select “new” from “Sound Setting”. The disabled “New Name” Textfield is now enabled. Select sound from comboboxes below. 
+When you want to preview the sound, press “preview” on right hand side to listen.
+When you are finish, press “save”.
 
-```
-Give an example
-```
 
-### And coding style tests
+### Testing
+## Testing if Puredata work in your Pi
+First, go to "Puredata_sound_selection" directory and run the following code in command line:
+'''
+pd -nogui *.pd &
+echo '0 1;' | pdsend 3000
+'''
+It works if there is no warning message. Once you have warnning message you can kill the thread and do the testing again.
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
+## Author
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
