@@ -13,11 +13,8 @@ def readFile():
         # List all files in a directory using scandir()
         global soundList,settingList,lastUsedList
         path = os.path.dirname(os.path.abspath(__file__))
-        print(path)
         soundFilePath=os.path.join(path,'samples/')
         soundList=(os.listdir(soundFilePath))
-        for entry in soundList:
-        	print("soundList"+entry)
         saveFilePath=(os.path.join(path,"save"))
         infile = open(saveFilePath,"r")
         #first line of file is choices of sound track  
@@ -36,13 +33,10 @@ def readFile():
             for x in range(1,len(word)):
                 settingList[key].append(word[x])
             
-        print(settingList)    
         infile.close()
         definition(settingList[lastUsedList[0]]);
-        print(lastUsedList)
         #set the current to last used     
 def getList():
-    print(soundList)
     return soundList,settingList,lastUsedList
 
 
@@ -205,7 +199,6 @@ def highEngineVol(vol):
     
 def preview(filename):
     out = "echo 'symbol "+soundDir + filename + ";' | pdsend "+str(3010)
-    print (out)
     output=sp.check_output(out, shell=True)    
 
 readFile()
