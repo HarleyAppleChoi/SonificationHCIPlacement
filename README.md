@@ -62,9 +62,9 @@ python3 GuiForPd.py
 ### Testing if Puredata work in your Pi
 First, go to "Puredata_sound_selection" directory and run the following code in command line:
 
-'''
+```
 pd -nogui *.pd &
 echo '0 1;' | pdsend 3000
-'''
+```
 
 It works if there is no warning message. Once you have warnning message you can kill the thread and do the testing again.
