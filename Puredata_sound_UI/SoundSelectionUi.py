@@ -73,7 +73,7 @@ class Window(Frame):
             comboboxes[i]["value"] = soundList
             comboboxes[i].grid(column=1, row=3 + i)
             comboboxes[i].bind("<<ComboboxSelected>>", self.chooseMusic)
-            previewButton = Button(self, text="Preview" + str(i))
+            previewButton = Button(self, text="Preview")
             previewButton.config(command=lambda s=i:self.previewAction(s))
             previewButton.grid(column=2, row=3 + i)
             previewButtons.append(previewButton)
