@@ -68,3 +68,6 @@ echo '0 1;' | pdsend 3000
 ```
 
 It works if there is no warning message. Once you have warnning message you can kill the thread and do the testing again.
+
+## Q&A
+Please see : https://docs.google.com/document/d/1JQgmb-LEs_1_dVxhTnicALwrgO_RYWc6m9DhcN7E2gQ/edit?usp=sharing
